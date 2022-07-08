@@ -21,7 +21,8 @@ namespace Correctif_API_Game.Models.Mappers
             {
                 Id = m.Id,
                 Email = m.Email,
-                Pseudo = m.Pseudo
+                Pseudo = m.Pseudo,
+                IsAdmin = m.IsAdmin
             };
         }
 
@@ -32,6 +33,7 @@ namespace Correctif_API_Game.Models.Mappers
                 Id = m.Id,
                 Email = m.Email,
                 Pseudo = m.Pseudo,
+                IsAdmin = m.IsAdmin,
                 FavoriteList = gameService.GetByMemberId(m.Id).Select(x => x.ToViewModel())
             };
         }

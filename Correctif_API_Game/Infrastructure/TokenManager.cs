@@ -29,7 +29,8 @@ namespace Correctif_API_Game.Infrastructure
             Claim[] claims = new[]
             {
                 new Claim(ClaimTypes.Surname, m.Pseudo),
-                new Claim(ClaimTypes.Sid, m.Id.ToString())
+                new Claim(ClaimTypes.Sid, m.Id.ToString()),
+                new Claim(ClaimTypes.Role, m.IsAdmin ? "Admin" : "User")
             };
 
             //Configuration du token

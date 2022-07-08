@@ -12,5 +12,6 @@ namespace Demo_ASP_MVC_Modele.BLL.Interfaces
     {
         MemberModel Register(MemberModel member);
         MemberModel Login(string pseudo, string password);
+        bool SetAdmin(int Id);
     }
 }

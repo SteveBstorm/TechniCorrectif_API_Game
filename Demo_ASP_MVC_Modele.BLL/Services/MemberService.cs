@@ -63,6 +63,11 @@ namespace Demo_ASP_MVC_Modele.BLL.Services
             }
         }
 
+        public bool SetAdmin(int Id)
+        {
+            return _MemberRepository.SetAdmin(Id);
+        }
+
         public int Insert(MemberModel entity)
         {
             throw new NotImplementedException();

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Correctif_API_Game.Models.Mappers;
 using Correctif_API_Game.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Correctif_API_Game.Controllers
 {
@@ -29,6 +30,7 @@ namespace Correctif_API_Game.Controllers
             return Ok(_gameService.GetById(id).ToViewModel());
         }
 
+        [Authorize("Admin")]
         [HttpPost]
         public IActionResult Create(GameForm form)
         {
@@ -43,6 +45,7 @@ namespace Correctif_API_Game.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [Authorize("Admin")]
 
         [HttpDelete]
         public IActionResult Delete(int id)
@@ -50,6 +53,7 @@ namespace Correctif_API_Game.Controllers
             _gameService.Delete(id);
             return Ok();
         }
+        [Authorize("Admin")]
 
         [HttpPut]
         public IActionResult Update([FromBody]GameForm form)
@@ -65,6 +69,7 @@ namespace Correctif_API_Game.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [Authorize("Auth")]
 
         [HttpPost("favorite/{idg}/member/{idm}")]
         public IActionResult AddFavorite(int idg, int idm)

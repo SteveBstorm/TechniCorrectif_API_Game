@@ -68,5 +68,13 @@ namespace Correctif_API_Game.Controllers
             MemberProfilView m = _memberService.GetById(id).ToWeb().ToView(_gameService);
             return Ok(m);
         }
+
+        [Authorize("Admin")]
+        [HttpPut("{id}")]
+        public IActionResult SetAdmin(int id)
+        {
+            if (!_memberService.SetAdmin(id)) return BadRequest();
+            return Ok();
+        }
     }
 }

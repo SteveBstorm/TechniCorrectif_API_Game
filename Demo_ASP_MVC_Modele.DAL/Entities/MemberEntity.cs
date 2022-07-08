@@ -15,5 +15,6 @@ namespace Demo_ASP_MVC_Modele.DAL.Entities
         public string Pseudo { get; set; }
         public string Email { get; set; }
         public string PwdHash { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

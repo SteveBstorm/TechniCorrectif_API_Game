@@ -47,7 +47,8 @@ namespace Demo_ASP_MVC_Modele.BLL.Tools
                 Id = member.Id,
                 Email = member.Email,
                 Pseudo = member.Pseudo,
-                Pwd = null
+                Pwd = null,
+                IsAdmin = member.IsAdmin
             };
         }
 
@@ -58,7 +59,8 @@ namespace Demo_ASP_MVC_Modele.BLL.Tools
                 Id = member.Id,
                 Email = member.Email,
                 Pseudo = member.Pseudo,
-                PwdHash = null
+                PwdHash = null,
+                IsAdmin = member.IsAdmin
             };
         }
     }

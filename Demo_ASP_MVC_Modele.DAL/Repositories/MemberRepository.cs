@@ -21,7 +21,8 @@ namespace Demo_ASP_MVC_Modele.DAL.Repositories
                 Id = (int)record["Id"],
                 Pseudo = (string)record["Pseudo"],
                 Email = (string)record["Email"],
-                PwdHash = null
+                PwdHash = null,
+                IsAdmin = (bool)record["IsAdmin"]
             };
         }
 
@@ -101,6 +102,19 @@ namespace Demo_ASP_MVC_Modele.DAL.Repositories
             }
         }
 
-        
+        public bool SetAdmin(int Id)
+        {
+            using (IDbCommand cmd = _Connection.CreateCommand())
+            {
+                cmd.CommandText = "UPDATE Member SET IsAdmin = 1 WHERE Id = @Id";
+                AddParameter(cmd, "@Id", Id);
+
+                ConnectionOpen();
+                return cmd.ExecuteNonQuery() == 1;
+
+            }
+        }
+
+
     }
 }

@@ -13,5 +13,6 @@ namespace Demo_ASP_MVC_Modele.BLL.Entities
         public string Pseudo { get; set; }
         public string Email { get; set; }
         public string Pwd { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }
