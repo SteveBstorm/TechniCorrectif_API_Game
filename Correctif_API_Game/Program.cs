@@ -29,6 +29,15 @@ builder.Services.AddScoped<IDbConnection>(sp =>
     return new SqlConnection(builder.Configuration.GetConnectionString("default"));
 });
 
+builder.Services.AddCors(options =>
+    options.AddPolicy("MyPolicy", o =>
+    {
+        o.WithOrigins("http://localhost:4200")
+         .AllowAnyMethod()
+         .AllowCredentials()
+         .AllowAnyHeader();
+    }));
+
 builder.Services.AddSingleton<TokenManager>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
@@ -37,9 +46,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     {
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("TokenInfo").GetSection("secret").Value)),
-        ValidateIssuer = false,
+        ValidateIssuer = true,
         ValidIssuer = builder.Configuration.GetSection("TokenInfo").GetSection("issuer").Value,
-        ValidateAudience = false,
+        ValidateAudience = true,
         ValidAudience = builder.Configuration.GetSection("TokenInfo").GetSection("audience").Value
     };
 });
@@ -63,6 +72,7 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseCors("MyPolicy");
 
 app.MapControllers();
 
